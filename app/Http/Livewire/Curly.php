@@ -9,6 +9,9 @@ class Curly extends Component
 {
     public $response = null;
     public ?string $endpoint = "https://google.com";
+    public array $params = [];
+    public string $type = 'get';
+    protected $listeners = ['check', 'setEndpoint', 'setParams', 'setType', 'setResponse'];
 
     public function rules(): array
     {
@@ -27,14 +30,29 @@ class Curly extends Component
         try {
             $this->validate();
             $request = Http::get($this->endpoint);
-            $this->response = [
+            $this->setResponse([
                 'statusCode' => $request->status(),
                 'body' => $request->body(),
                 'json' => $request->json(),
                 'status' => $request->successful() ? 'success' : 'danger'
-            ];
+            ]);
         } catch (\Exception $exception) {
             dd($exception);
         }
+    }
+
+    public function exit()
+    {
+        $this->response = null;
+    }
+
+    public function setResponse($response)
+    {
+        $this->response = $response;
+    }
+
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
     }
 }

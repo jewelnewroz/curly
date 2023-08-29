@@ -26,7 +26,13 @@ class Card extends Component
         try {
             $item = Item::find($id);
             $request = Http::get($item->url);
-            dd($request);
+            $this->emitUp('setEndpoint', $item->url);
+            $this->emitUp('setResponse', [
+                'statusCode' => $request->status(),
+                'body' => $request->body(),
+                'json' => $request->json(),
+                'status' => $request->successful() ? 'success' : 'danger'
+            ]);
         } catch (\Exception $exception) {
             dd($exception);
         }
