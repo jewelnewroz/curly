@@ -24,6 +24,7 @@ class Card extends Component
     public function check($id)
     {
         try {
+            $this->emitUp('setResponse', []);
             $item = Item::find($id);
             $request = Http::get($item->url);
             $this->emitUp('setEndpoint', $item->url);

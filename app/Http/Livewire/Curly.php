@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Curly extends Component
 {
-    public $response = null;
+    public array $response = [];
     public ?string $endpoint = "https://google.com";
     public array $params = [];
     public string $type = 'get';
@@ -28,6 +28,7 @@ class Curly extends Component
     public function submit()
     {
         try {
+            $this->response = [];
             $this->validate();
             $request = Http::get($this->endpoint);
             $this->setResponse([
@@ -43,15 +44,15 @@ class Curly extends Component
 
     public function exit()
     {
-        $this->response = null;
+        $this->response = [];
     }
 
-    public function setResponse($response)
+    public function setResponse(array $response)
     {
         $this->response = $response;
     }
 
-    public function setEndpoint($endpoint)
+    public function setEndpoint(string $endpoint)
     {
         $this->endpoint = $endpoint;
     }
