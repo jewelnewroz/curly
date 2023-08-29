@@ -1,12 +1,11 @@
 <div>
     @foreach($items as $item)
     <div class="col-md-4">
-        <div class="card">
+        <div class="card p-3">
             <div class="card-block">
                 <h4 class="card-title">{{ $item->title }}</h4>
                 <h6 class="card-subtitle text-muted">{{ $item->url }}</h6>
-                <a href="#" class="card-link">link</a>
-                <a href="#" class="card-link">Second link</a>
+                <button class="btn btn-success" wire:click="check({{ $item->id }})">CHECK</button>
             </div>
         </div>
     </div>

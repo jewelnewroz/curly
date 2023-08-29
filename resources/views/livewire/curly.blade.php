@@ -27,7 +27,9 @@
         </div>
     </div>
 
-    <div class="row hidden-md-up">
-        <livewire:card></livewire::card>
+    <div class="row">
+        <div class="col-12">
+            <livewire:card />
+        </div>
     </div>
 </div>
