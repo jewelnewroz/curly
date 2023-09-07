@@ -26,7 +26,7 @@ class Card extends Component
         try {
             $this->emitUp('setResponse', []);
             $item = Item::find($id);
-            $request = Http::get($item->url);
+            $request = Http::withOptions(["verify"=>false])->get($item->url);
             $this->emitUp('setEndpoint', $item->url);
             $this->emitUp('setResponse', [
                 'statusCode' => $request->status(),

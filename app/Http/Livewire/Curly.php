@@ -30,7 +30,7 @@ class Curly extends Component
         try {
             $this->response = [];
             $this->validate();
-            $request = Http::get($this->endpoint);
+            $request = Http::withOptions(["verify"=>false])->get($this->endpoint);
             $this->setResponse([
                 'statusCode' => $request->status(),
                 'body' => $request->body(),
