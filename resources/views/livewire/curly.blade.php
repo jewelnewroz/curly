@@ -8,8 +8,8 @@
                         <div class="input-group-prepend">
                             <select wire:model="type" class="form-control">
                                 <option value="get">GET</option>
-                                <option value="get">POST</option>
-                                <option value="get">PUT</option>
+                                <option value="post">POST</option>
+                                <option value="put">PUT</option>
                             </select>
                         </div>
                         <input type="text" wire:model="endpoint" class="form-control" placeholder="https://google.com"
